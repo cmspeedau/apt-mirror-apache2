@@ -13,11 +13,10 @@ docker run -d \
 
 * `-v /path/data`: the path which you want to store data
 
-
 ### More options with docker command
 
 * `-e MIRROR_URL=url`: to replace default URL (http://archive.ubuntu.com/ubuntu) - See [Ubuntu Mirrors](https://launchpad.net/ubuntu/+archivemirrors)
-* `-e TIMEOUT=timeout-value`: to set the resync period, default is 12 hours. To set the [TIMEOUT format description](http://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/)
+* `-e TIMEOUT=timeout-value`: to set the resync period, default is 12 hours. See the [TIMEOUT format description](http://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/)
 * `-e PUID=userid`: set to a userid that can access the mounted volume (see note below)
 * `-e PGID=groupid`: set to a groupid that can access the mounted volume (see note below)
 
