@@ -1,46 +1,28 @@
 #!/bin/bash
-function create_link {
-    # parse mirror.list to share under /var/www/package path
-    grep '^deb' /etc/apt/mirror.list | awk '{print $2}' | while IFS= read -r line
-    do
-        local mirror_path=
-        mirror_path=$(echo "$line" | sed -e 's|^ftp||' -e 's|^https\?||' -e 's|^rsync||' -e 's|://||' -e 's|/$||')
-        local target="/var/www/package"
 
-        local dest=
-        case "$line" in
-            *ubuntu*)
-                dest="$target/ubuntu"
-            ;;
-            *debian*)
-                dest="$target/debian"
-            ;;
-        esac
-        if [ ! -h "$dest" ] && [ x"$dest" != x"" ]; then
-            echo "[$(date)] Create $dest"
-            ln -s "/var/spool/apt-mirror/mirror/$mirror_path" "$dest"
-        fi 
-    done
-}
+echo "configuring /etc/apt/mirror.list"
+echo "#### config ####
+set base_path /var/www/html/ubuntu
+set nthreads 20
+set _tilde 0
 
-# To setup http server config at first time
-if [ ! -d /var/www/package ]; then
-    mkdir -p /var/www/package
-    sed -i '12s|DocumentRoot /var/www/html|DocumentRoot /var/www/package|' /etc/apache2/sites-enabled/000-default.conf
+deb $MIRROR_URL bionic main restricted universe multiverse
+deb $MIRROR_URL bionic-updates main restricted universe multiverse
+deb $MIRROR_URL bionic-backports main restricted universe multiverse
+deb $MIRROR_URL bionic-security main restricted universe multiverse
 
-    # If user doesn't provide mirror.list, using default setting
-    if [ ! -e /etc/apt/mirror.list ]; then
-        echo "[$(date)] Using default mirror.list"
-        ln -s /mirror.list /etc/apt/mirror.list
-    fi
-    create_link
-fi
+clean http://archive.ubuntu.com/ubuntu" \
+> /etc/apt/mirror.list
+echo "content of /etc/apt/mirror.list is..."
+echo "-------------------------------------"
+cat /etc/apt/mirror.list
+echo "-------------------------------------"
 
-# Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
-
-echo "[$(date)] Starting apache server"
+echo "starting apache server"
 service apache2 start
+
+echo "apache started..."
 
 while true; do
     echo "[$(date)] Starting apt-mirror"
