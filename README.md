@@ -10,8 +10,8 @@ Using Docker to construct your APT(Advanced Packaging Tools) mirror HTTP server.
 
 ```
 docker run -d \
-           -v /path/data:/var/spool/apt-mirror \
-           -p 8080:80 seterrychen/apt-mirror-http-server
+           -v /path/data:/var/www/html/ubuntu \
+           -p 8080:80 kongkrit/apt-mirror-http-server
 ```
 
 * `-v /path/data`: the path which you want to store data
