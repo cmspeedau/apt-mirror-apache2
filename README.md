@@ -24,7 +24,7 @@ docker run -d \
 
 ## Changelog
 
-* 2019-01-01
+* 2020-01-01
   * updated ubuntu to 18.04 LTS
 
 * 2017-07-27: version 0.1.2
