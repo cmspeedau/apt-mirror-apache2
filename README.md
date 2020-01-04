@@ -8,7 +8,7 @@ Using Docker to construct your APT(Advanced Packaging Tools) mirror HTTP server.
 ```
 docker run -d \
            -v /path/data:/var/www/html/ \
-           -p 8080:80 kongkrit/apt-mirror-http-server
+           -p 8080:80 kongkrit/apt-mirror-apache2
 ```
 
 * `-v /path/data`: the path which you want to store data
