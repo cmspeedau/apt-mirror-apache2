@@ -8,6 +8,7 @@ RUN \
 ENV DEBIAN_FRONTEND noninteractive
 ENV TIMEOUT 12h
 ENV MIRROR_URL http://archive.ubuntu.com/ubuntu
+ENV NTHREADS 10
 ENV PUID 1000
 ENV PGID 1000
 

@@ -17,6 +17,7 @@ docker run -d \
 
 * `-e MIRROR_URL=url`: to replace default URL (http://archive.ubuntu.com/ubuntu) - See [Ubuntu Mirrors](https://launchpad.net/ubuntu/+archivemirrors)
 * `-e TIMEOUT=timeout-value`: to set the resync period, default is 12 hours. See the [TIMEOUT format description](http://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/)
+* `-e NTHREADS=10`: number of wget threads to use to pull from MIRROR_URL - default to 10
 * `-e PUID=userid`: set to a userid that can access the mounted volume (see note below)
 * `-e PGID=groupid`: set to a groupid that can access the mounted volume (see note below)
 
@@ -34,6 +35,8 @@ In this instance `PUID=1000` and `PGID=1000`. To find yours use id user as below
 You only need to set the PUID and PGID variables if you are mounting the `/var/www/html` folder
 
 ## Changelog
+* 2020-01-04
+  * support PUID, PGID, and NTHREADS
 
 * 2020-01-01
   * updated ubuntu to 18.04 LTS

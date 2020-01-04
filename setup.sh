@@ -3,7 +3,7 @@
 echo "configuring /etc/apt/mirror.list"
 echo "#### config ####
 set base_path /var/www/html/ubuntu
-set nthreads 20
+set nthreads $NTHREADS
 set _tilde 0
 
 deb $MIRROR_URL bionic main restricted universe multiverse
