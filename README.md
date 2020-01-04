@@ -1,4 +1,4 @@
-# apt-mirror-http-apache2
+# apt-mirror-apache2
 
 Using Docker to construct your APT(Advanced Packaging Tools) mirror HTTP server.
 
