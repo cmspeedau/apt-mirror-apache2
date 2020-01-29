@@ -45,6 +45,33 @@ In this instance `PUID=1000` and `PGID=1000`. To find yours use id user as below
 ```
 You only need to set the PUID and PGID variables if you are mounting the `/var/www/html` folder
 
+## How to use the repos one you "mirrored" them (following "docker run" example above):
+- I use X86_64 (amd64) architecture here, you may need to adjust your architecture, if you use a different CPU architecture.
+- surf to `http://repo-server:81` (port is 81 in the docker run example above) and you'll see **Index of /**, click on `ubuntu` and click `mirror`, you will see `mirror.math.princeton.edu` and `ppa.launchpad.net`
+- The idea is to add the URL that points all the way down to `ubuntu` where the contents will be `dists` and `pools` folders. And then, follow that with **release_name** **repo_lists** So, if the current `/etc/apt/sources.list` read like this:
+```
+deb http://mirror.math.princeton.edu/pub/ubuntu bionic main restricted universe multiverse
+deb http://mirror.math.princeton.edu/pub/ubuntu bionic-updates main restricted universe multiverse
+deb http://mirror.math.princeton.edu/pub/ubuntu bionic-backports main restricted universe multiverse
+deb http://mirror.math.princeton.edu/pub/ubuntu bionic-security main restricted universe multiverse
+```
+  - Then the lines to add at the top of `/etc/apt/sources.list` are:
+```
+deb [arch=amd64] http://repo-server:81/ubuntu/mirror/mirror.math.princeton.edu/pub/ubuntu bionic main restricted universe multiverse
+deb [arch=amd64] http://repo-server:81/ubuntu/mirror/mirror.math.princeton.edu/pub/ubuntu bionic-updates main restricted universe multiverse
+deb [arch=amd64] http://repo-server:81/ubuntu/mirror/mirror.math.princeton.edu/pub/ubuntu bionic-backports main restricted universe multiverse
+deb [arch=amd64] http://repo-server:81/ubuntu/mirror/mirror.math.princeton.edu/pub/ubuntu bionic-security main restricted universe multiverse
+```
+  - The current content of `/etc/apt/sources.list.d/jonathonf-ubuntu-zfs-bionic.list` is
+```
+deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main
+```
+  - Then line to add at the top of `/etc/apt/sources.list.d/jonathonf-ubuntu-zfs-bionic.list` is:
+```
+deb [arch=amd64] http://repo-server:81/ubuntu/mirror/ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main
+```
+  - repeat this for all the repos in EXTRA1..5
+
 ## Changelog
 * 2020-01-29
   * support EXTRA1...5 parameters
