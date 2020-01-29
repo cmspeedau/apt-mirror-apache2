@@ -16,6 +16,9 @@ docker run -d \
 ### More options with docker command
 
 * `-e MIRROR_URL=url`: to replace default URL (http://archive.ubuntu.com/ubuntu) - See [Ubuntu Mirrors](https://launchpad.net/ubuntu/+archivemirrors)
+* `-e EXTRA1=text`: to add more repo to mirror - for example:
+  ```-e EXTRA1="deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main"``` will add this extra line to the list file
+* `-e EXTRA2, EXTRA3, EXTRA4, EXTRA5`: same as EXTRA1
 * `-e TIMEOUT=timeout-value`: to set the resync period, default is 12 hours. See the [TIMEOUT format description](http://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/)
 * `-e NTHREADS=10`: number of wget threads to use to pull from MIRROR_URL - default to 10
 * `-e PUID=userid`: set to a userid that can access the mounted volume (see note below)
