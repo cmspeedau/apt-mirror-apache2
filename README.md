@@ -6,9 +6,14 @@ Using Docker to construct your APT(Advanced Packaging Tools) mirror HTTP server.
 ### Basic command:
 
 ```
-docker run -d \
+docker run -d --restart always \
+           -e TIMEOUT=4h -e PUID=1000 -e PGID=100 \
+           -e MIRROR_URL=http://archive.ubuntu.com/ubuntu \
+           -e EXTRA1="deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main" \
+           -e EXTRA2="deb http://ppa.launchpad.net/wireguard/wireguard/ubuntu bionic main" \
            -v /path/data:/var/www/html/ \
-           -p 8080:80 kongkrit/apt-mirror-apache2
+           --name apt-mirror \
+           -p 81:80 kongkrit/apt-mirror-apache2
 ```
 
 * `-v /path/data`: the path which you want to store data
