@@ -11,6 +11,12 @@ deb $MIRROR_URL bionic-updates main restricted universe multiverse
 deb $MIRROR_URL bionic-backports main restricted universe multiverse
 deb $MIRROR_URL bionic-security main restricted universe multiverse
 
+$EXTRA1
+$EXTRA2
+$EXTRA3
+$EXTRA4
+$EXTRA5
+
 clean http://archive.ubuntu.com/ubuntu" \
 > /etc/apt/mirror.list
 echo "content of /etc/apt/mirror.list is..."
