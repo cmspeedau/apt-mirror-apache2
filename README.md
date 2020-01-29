@@ -41,6 +41,9 @@ In this instance `PUID=1000` and `PGID=1000`. To find yours use id user as below
 You only need to set the PUID and PGID variables if you are mounting the `/var/www/html` folder
 
 ## Changelog
+* 2020-01-29
+  * support EXTRA1...5 parameters
+
 * 2020-01-04
   * support PUID, PGID, and NTHREADS
 
