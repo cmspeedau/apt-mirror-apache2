@@ -1,27 +1,55 @@
 #!/bin/bash
 
-echo "configuring /etc/apt/mirror.list"
+TARGETFILE="/etc/apt/sources.list"
+
+echo "configuring [$TARGETFILE] MIRROR_URL=[$MIRROR_URL]"
+echo "  DIST1=[$DIST1] DIST2=[$DIST2]"
+
 echo "#### config ####
 set base_path /var/www/html/ubuntu
 set nthreads $NTHREADS
-set _tilde 0
+set _tilde 0" \
+> "$TARGETFILE"
 
-deb $MIRROR_URL bionic main restricted universe multiverse
-deb $MIRROR_URL bionic-updates main restricted universe multiverse
-deb $MIRROR_URL bionic-backports main restricted universe multiverse
-deb $MIRROR_URL bionic-security main restricted universe multiverse
+if [[ ! -z "$DIST1" ]]; then
+echo "# for release $DIST1
+deb $MIRROR_URL $DIST1 main restricted universe multiverse
+deb $MIRROR_URL $DIST1-updates main restricted universe multiverse
+deb $MIRROR_URL $DIST1-backports main restricted universe multiverse
+deb $MIRROR_URL $DIST1-security main restricted universe multiverse
+deb $MIRROR_URL $DIST1-proposed main restricted universe multiverse" >> "$TARGETFILE"
+fi
 
+if [[ ! -z "$DIST2" ]]; then
+echo "# for release $DIST2
+deb $MIRROR_URL $DIST2 main restricted universe multiverse
+deb $MIRROR_URL $DIST2-updates main restricted universe multiverse
+deb $MIRROR_URL $DIST2-backports main restricted universe multiverse
+deb $MIRROR_URL $DIST2-security main restricted universe multiverse
+deb $MIRROR_URL $DIST2-proposed main restricted universe multiverse" >> "$TARGETFILE"
+fi
+
+if [[ ! -z "$DIST3" ]]; then
+echo "# for release $DIST3
+deb $MIRROR_URL $DIST3 main restricted universe multiverse
+deb $MIRROR_URL $DIST3-updates main restricted universe multiverse
+deb $MIRROR_URL $DIST3-backports main restricted universe multiverse
+deb $MIRROR_URL $DIST3-security main restricted universe multiverse
+deb $MIRROR_URL $DIST3-proposed main restricted universe multiverse" >> "$TARGETFILE"
+fi
+
+echo "# for EXTRAS
 $EXTRA1
 $EXTRA2
 $EXTRA3
 $EXTRA4
 $EXTRA5
 
-clean http://archive.ubuntu.com/ubuntu" \
-> /etc/apt/mirror.list
-echo "content of /etc/apt/mirror.list is..."
+clean http://archive.ubuntu.com/ubuntu" >> "$TARGETFILE"
+
+echo "content of [$TARGETFILE] is..."
 echo "-------------------------------------"
-cat /etc/apt/mirror.list
+cat "$TARGETFILE"
 echo "-------------------------------------"
 
 rm -f /var/run/apache2/apache2.pid
