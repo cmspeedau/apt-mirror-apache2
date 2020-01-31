@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGETFILE="/etc/apt/sources.list"
+TARGETFILE="/etc/apt/mirror.list"
 
 echo "configuring [$TARGETFILE] MIRROR_URL=[$MIRROR_URL]"
 echo "  DIST1=[$DIST1] DIST2=[$DIST2]"
