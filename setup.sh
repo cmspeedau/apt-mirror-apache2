@@ -45,7 +45,7 @@ $EXTRA3
 $EXTRA4
 $EXTRA5
 
-clean http://archive.ubuntu.com/ubuntu" >> "$TARGETFILE"
+#clean http://archive.ubuntu.com/ubuntu" >> "$TARGETFILE"
 
 echo "content of [$TARGETFILE] is..."
 echo "-------------------------------------"
