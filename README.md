@@ -21,6 +21,11 @@ docker run -d --restart always \
 ### More options with docker command
 
 * `-e MIRROR_URL=url`: to replace default URL (http://archive.ubuntu.com/ubuntu) - See [Ubuntu Mirrors](https://launchpad.net/ubuntu/+archivemirrors)
+* `-e DIST1=bionic`: the release you want to mirror.
+  *Default for `DIST1` is `bionic` (Ubuntu 18.04)*
+* `-e DIST2=focal`: additional release you want to mirror. Set to blank ("") to skip.
+  *Default for `DIST2` is `focal` (Ubuntu 20.04)*
+* `-e DIST3=""`: additional release you want to mirror. Set to blank ("") to skip.
 * `-e EXTRA1=text`: to add more repo to mirror - for example:
 ```
   -e EXTRA1="deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main"
@@ -73,6 +78,9 @@ deb [arch=amd64] http://repo-server:81/ubuntu/mirror/ppa.launchpad.net/jonathonf
   - repeat this for all the repos in EXTRA1..5
 
 ## Changelog
+* 2020-01-31
+  * support DIST1...3 for different releases
+
 * 2020-01-29
   * support EXTRA1...5 parameters
 
