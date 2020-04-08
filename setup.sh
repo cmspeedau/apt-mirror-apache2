@@ -58,7 +58,7 @@ rm -f /var/run/apache2/apache2.pid
 
 echo "hacking www-data and apt-mirror to become PUID=$PUID PGID=$PGID"
 SEDEX="s~(www-data|apt-mirror):x:[0-9]+:[0-9]+:~\1:x:${PUID}:${PGID}:~g"
-sed -ri "$SEDEX" /etc/passwd
+sed -Ei "$SEDEX" /etc/passwd
 echo "regex: $SEDEX"
 echo "-------------------------------------"
 grep -E '(www-data|apt-mirror)' /etc/passwd |sed -E "s~^(.*)$~>>> \1~g"
