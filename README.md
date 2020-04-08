@@ -18,6 +18,10 @@ docker run -d --restart always \
 
 * `-v /path/data`: the path which you want to store data
 
+### postmirror.sh and clean.sh
+clean.sh is now automatically created by apt-mirror based on the MIRROR_URL (see below)
+postmirror.sh - if not already existing, will be set to run clean.sh after the mirror update
+
 ### More options with docker command
 
 * `-e MIRROR_URL=url`: to replace default URL (http://archive.ubuntu.com/ubuntu) - See [Ubuntu Mirrors](https://launchpad.net/ubuntu/+archivemirrors)
@@ -29,9 +33,10 @@ docker run -d --restart always \
 * `-e EXTRA1=text`: to add more repo to mirror - for example:
 ```
   -e EXTRA1="deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu bionic main"
-```
    will add this extra line to the mirror.list file
 * `-e EXTRA2, EXTRA3, EXTRA4, EXTRA5`: same as EXTRA1
+* `-e ARCH=deb`: can be changed to deb-amd64 or deb-i386 to narrow down the architecture of download
+* `-e WEB_ROOT=/`: the apache2 server can be set to have a deeper web root like `/mirror/<mirror-web-address>/pub/` - end it with a slash 
 * `-e TIMEOUT=timeout-value`: to set the resync period, default is 12 hours. See the [TIMEOUT format description](http://www.cyberciti.biz/faq/linux-unix-sleep-bash-scripting/)
 * `-e NTHREADS=10`: number of wget threads to use to pull from MIRROR_URL - default to 10
 * `-e PUID=userid`: set to a userid that can access the mounted volume (see note below)
