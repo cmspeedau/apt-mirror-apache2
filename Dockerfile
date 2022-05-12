@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN \
   apt update && \
@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TIMEOUT 12h
 ENV WEB_ROOT /
 ENV MIRROR_URL http://archive.ubuntu.com/ubuntu
-ENV DIST1 bionic
+ENV DIST1 focal
 ENV DIST2 ""
 ENV DIST3 ""
 ENV NTHREADS 10
