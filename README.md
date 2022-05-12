@@ -83,6 +83,8 @@ deb [arch=amd64] http://repo-server:81/ubuntu/mirror/ppa.launchpad.net/jonathonf
   - repeat this for all the repos in EXTRA1..5
 
 ## Changelog
+* 2021-05-12
+  * Updated to Ubuntu focal
 * 2020-01-31
   * support DIST1...3 for different releases
 
